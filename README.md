@@ -1,0 +1,2 @@
+# libcompound
+A compound library.
