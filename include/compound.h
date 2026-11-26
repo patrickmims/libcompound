@@ -5,6 +5,7 @@
 #include <curl/curl.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +19,7 @@
 
 typedef struct Node
 {
+    int item;
     int *data;
     struct Node *next;
 } list_t;
@@ -25,11 +27,12 @@ typedef struct Node
 FILE *error_log(); 
 void *request_curl();
 void create_process(pid_t);
-void create_thread(pthread_t, void *(*)());
+void create_thread(pthread_t, void *(*)(), void *);
 void network_init(); 
 void socket_server();
 
 void insert(list_t **, int);
+list_t wrapper_ftp(list_t);
 
 /**
  * void read_json();

@@ -1,17 +1,5 @@
 #include "compound.h"
 
-/*
-FILE *error()
-{
-    FILE *filePtr = NULL;
-
-    if((filePtr = fopen("error.txt", "a")) == NULL)
-        exit(EXIT_FAILURE);
-
-    return filePtr;
-}
-*/
-
 void insert(list_t **list, int item)
 {
     static int i = 0;
