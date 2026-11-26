@@ -1,14 +1,15 @@
 #include "compound.h"
 
-void create_process()
+void create_process(pid_t pid)
 {
-    pid_t curl_pid;
-    switch(curo_pid = fork())
+    void *(*rc)(*) = request_curl(); // function pointer
+                                    
+    switch(pid = fork())
     {
         case -1: 
             fprintf(error(), "Error: creating a new fork()");
         case 0: 
-            curl_request();
+            create_thread(rc);
         case default: 
             sleep(5);
     }

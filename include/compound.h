@@ -1,13 +1,20 @@
 #ifndef COMPOUND_H
 #define COMPOUND_H
 
+#include <arpa/inet.h>
 #include <curl/curl.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-#include "process.h"
-#include "linkedlist.h"
+// #include "process.h"
+// #include "linkedlist.h"
 
 typedef struct Node
 {
@@ -15,11 +22,19 @@ typedef struct Node
     struct Node *next;
 } list_t;
 
+FILE *error_log(); 
+void *request_curl();
 void create_process(pid_t);
-void curl_request();
+void create_thread(pthread_t, void *(*)());
 void network_init(); 
+void socket_server();
 
 void insert(list_t **, int);
 
-
+/**
+ * void read_json();
+ * void write_json();
+ * void ftp();
+ * void http();
+ */
 #endif
