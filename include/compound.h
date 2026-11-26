@@ -17,7 +17,13 @@
 // #include "process.h"
 // #include "linkedlist.h"
 
-typedef struct Node
+typedef struct Memory
+{
+    char *memory;
+    size_t size;
+} memory_t;
+
+typedef struct List 
 {
     int item;
     int *data;
