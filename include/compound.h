@@ -19,7 +19,7 @@
 
 typedef struct Memory
 {
-    char *memory;
+    char *response;
     size_t size;
 } memory_t;
 
@@ -32,10 +32,13 @@ typedef struct List
 
 FILE *error_log(); 
 void *request_curl();
-void create_process(pid_t);
+void create_process(pid_t, void (*)(), void *);
 void create_thread(pthread_t, void *(*)(), void *);
 void network_init(); 
 void socket_server();
+void *memory();
+void ftp();
+void http();
 
 void insert(list_t **, int);
 list_t wrapper_ftp(list_t);
@@ -43,7 +46,5 @@ list_t wrapper_ftp(list_t);
 /**
  * void read_json();
  * void write_json();
- * void ftp();
- * void http();
  */
 #endif

@@ -1,31 +1,33 @@
 #include "compound.h"
 
-void create_process(pid_t pid)
-{
-    list_t (*ftp)() = wrapper_ftp; // function pointer
-    pthread_t thread;
+// https://curl.se/libcurl/c/CURLOPT_WRITEFUNCTION.html  
 
-    list_t list;
-    list.item = 0;
+void create_process(pid_t pid, void (*fn)(), void *arg)
+{
+    // list_t (*ftp)() = wrapper_ftp; // function pointer
+    // pthread_t thread;
+
+    list_t l; 
+    list_t *list = NULL;
+    list = &l;
+    list = (list_t *)memory;
 
     printf("Parent [ %d ]\n", getpid());
 
-    // projects need investments and investments need capital
     switch(pid = fork())
     {
         case -1:
             fprintf(error_log(), "Error: creating a new fork()");
         case 0:
-            list = wrapper_ftp(list);
-            printf("new item value => %d\n", list.item);
+            // list = (list_t *)arg;
+            // needs to return a list_t
+            fn(list);
             exit(EXIT_SUCCESS);
         default:
             sleep(5);
             break;
     }
 
-    printf("new l.item => %d\n", list.item);
+    printf("new l.item => %d\n", list->item);
 }
-/**
- *  
- */
+

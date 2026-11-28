@@ -15,15 +15,17 @@ static size_t callback(char *data, size_t size, size_t nmemb, void *arg)
     if((ptr = realloc(memory->response, memory->size + realsize + 1)) == NULL)
         exit(EXIT_FAILURE);
 
-    memory->memory = ptr;
-    memcopy(&(memory->memory[memory->size]), data, realsize);
+    memory->response = ptr;
+    memcpy(&(memory->response[memory->size]), data, realsize);
     memory->size += realsize;
-    memory->memory[memory] = 0;
+    memory->response[memory->size] = 0;
 
     return realsize;
 }
 
+/*
 void http()
 {
     struct memory chunk = { 0 };
 }
+*/
